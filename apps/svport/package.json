@@ -1,0 +1,17 @@
+{
+  "name": "@apps/svport",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite"
+  },
+  "dependencies": {
+    "@packages/utils": "workspace:*",
+    "@packages/ts": "workspace:*",
+    "svelte": "^4.2.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "@sveltejs/vite-plugin-svelte": "^3.0.0",
+    "typescript": "^5.4.0"
+  }
+}

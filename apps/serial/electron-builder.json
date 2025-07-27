@@ -1,0 +1,16 @@
+{
+  "appId": "com.angga.serial",
+  "files": ["dist"],
+  "extraResources": ["dist/preload", "dist/main", "dist/renderer"],
+  "icon": "./desktopIcon.png",
+  "mac": {
+    "target": "dmg"
+  },
+  "linux": {
+    "target": "AppImage",
+    "category": "Utility"
+  },
+  "win": {
+    "target": ["portable", "msi"]
+  }
+}

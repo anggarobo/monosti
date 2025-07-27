@@ -1,0 +1,9 @@
+{
+  "extends": "../../packages/ts/tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "jsx": "react-jsx",
+    "module": "ESNext"
+  },
+  "include": ["src", "renderer", "assets"]
+}

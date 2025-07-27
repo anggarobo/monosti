@@ -1,0 +1,7 @@
+{
+  "extends": "../../../packages/ts/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../dist/preload"
+  },
+  "include": ["./**/*.ts"]
+}

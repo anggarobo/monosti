@@ -1,0 +1,15 @@
+{
+  "name": "monosti",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev:svelte": "pnpm --filter @apps/svelte dev",
+    "dev:serial": "pnpm --filter @apps/serial dev:renderer"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  },
+  "author": "anggarobo",
+  "license": "ISC",
+  "packageManager": "pnpm@10.12.1"
+}
