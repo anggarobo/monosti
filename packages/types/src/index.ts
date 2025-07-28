@@ -1,7 +1,7 @@
 export {};
 
 type OsPlatform = {
-  platform: Extract<NodeJS.Platform, "win32" | "linux" | "darwin">;
+  platform: "win32" | "linux" | "darwin";
   isMac: boolean;
   isLinux: boolean;
   isWindows: boolean;
@@ -10,7 +10,7 @@ type OsPlatform = {
 };
 
 interface SerialApi {
-  listPorts: () => Promise<import("serialport").PortInfo[]>;
+  listPorts: () => Promise<import("@serialport/bindings-interface").PortInfo[]>;
   connect: (path: string, baudRate?: number) => void;
   onData: (callback: (data: any) => void) => void;
   onStatus: (callback: (data: string) => void) => void;
@@ -27,7 +27,7 @@ interface SerialApi {
 declare global {
   interface Window {
     api: {
-      platform(): Promise<{ platform: string }>;
+      platform: OsPlatform
       serial: SerialApi;
     };
   }

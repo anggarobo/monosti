@@ -4,5 +4,5 @@
     "outDir": "../dist/main",
     "rootDir": ".",
   },
-  "include": ["./**/*.ts"]
+  "include": ["./**/*.ts", "./**/*.js", "../types.d.ts"]
 }

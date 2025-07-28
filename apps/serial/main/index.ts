@@ -1,25 +1,33 @@
-import { app, BrowserWindow, globalShortcut, ipcMain } from 'electron';
+import { app, BrowserWindow, globalShortcut, ipcMain, WebFrameMain } from 'electron';
 import path from 'path';
-import { fileURLToPath } from 'url';
-import * as serial from './modules/serial';
+import { fileURLToPath, pathToFileURL } from 'url';
+// import os from 'os';
+import * as serial from './modules/serial.js';
+import { createMenu } from './modules/menu.js';
+import __path from './utils/path.js'
+import __platform from './utils/platform.js'
 
 const isDev = !app.isPackaged;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 app.whenReady().then(() => {
-  console.log('App is ready');
+  const preload_path = path.join(__dirname, '../preload/index.js')
   const win = new BrowserWindow({
     width: 800,
     height: 600,
     show: true,
     webPreferences: {
-      preload: path.join(__dirname, '../preload/index.js'),
+      preload: preload_path,
+      contextIsolation: true,
+      nodeIntegration: false,
+      sandbox: false,
     }
   });
 
   win.once('ready-to-show', () => {
     console.log('Window ready to show');
+    // console.log(process.env)
     win.show();
   });
 
@@ -32,6 +40,12 @@ app.whenReady().then(() => {
   }
 
   serial.init(win)
+  createMenu(win, isDev)
+  ipcMain.handle("platform", (e) => {
+    if (e.senderFrame) validateEventFrame(e.senderFrame);
+    return __platform
+  });
+
   // Global Keyboard Shortcut
   globalShortcut.register("CmdOrCtrl+R", () => {
     win.reload();
@@ -53,5 +67,15 @@ app.on("window-all-closed", () => {
     app.quit();
   }
 });
+
+
+export function validateEventFrame(frame: WebFrameMain) {
+  if (isDev && new URL(frame.url).host === "localhost:5173") {
+    return;
+  }
+  if (frame.url !== pathToFileURL(__path.RENDERER_PATH).toString()) {
+    throw new Error("Malicious event");
+  }
+}
 
 

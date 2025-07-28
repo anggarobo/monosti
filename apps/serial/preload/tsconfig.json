@@ -3,5 +3,5 @@
   "compilerOptions": {
     "outDir": "../dist/preload"
   },
-  "include": ["./**/*.ts"]
+  "include": ["./**/*.ts", "./**/*.js", "../types.d.ts"]
 }

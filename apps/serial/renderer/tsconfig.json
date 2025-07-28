@@ -3,5 +3,5 @@
   "compilerOptions": {
     "outDir": "../dist/renderer"
   },
-  "include": ["./**/*.ts"]
+  "include": ["./**/*.ts", "../types.d.ts"]
 }

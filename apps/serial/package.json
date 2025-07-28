@@ -2,7 +2,7 @@
   "name": "@apps/serial",
   "type": "module",
   "scripts": {
-    "dev": "concurrently -k -n MAIN,RENDERER -c yellow,cyan \"pnpm dev:main\" \"pnpm dev:renderer\" \"pnpm dev:electron\"",
+    "dev": "pnpm build; concurrently -k -n MAIN,RENDERER -c yellow,cyan \"pnpm dev:main\" \"pnpm dev:renderer\" \"pnpm dev:electron\"",
     "dev:main": "tsc -w -p main",
     "dev:renderer": "vite --config renderer/vite.config.ts",
     "dev:electron": "wait-on http://localhost:5173 && electron dist/main/index.js",
@@ -12,6 +12,9 @@
     "build:renderer": "vite build --config renderer/vite.config.ts"
   },
   "dependencies": {
+    "@packages/types": "workspace:*",
+    "@packages/utils": "workspace:*",
+    "@packages/ts": "workspace:*",
     "electron": "^29.0.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

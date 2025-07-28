@@ -1,0 +1,17 @@
+{
+  "name": "@packages/types",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@packages/utils": "workspace:*",
+    "@serialport/bindings-interface": "^1.2.2",
+    "serialport": "^13.0.0"
+  }
+}
