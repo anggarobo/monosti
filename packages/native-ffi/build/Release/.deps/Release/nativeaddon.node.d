@@ -1,0 +1,1 @@
+cmd_Release/nativeaddon.node := ln -f "Release/obj.target/nativeaddon.node" "Release/nativeaddon.node" 2>/dev/null || (rm -rf "Release/nativeaddon.node" && cp -af "Release/obj.target/nativeaddon.node" "Release/nativeaddon.node")

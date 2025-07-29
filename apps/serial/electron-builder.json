@@ -1,7 +1,7 @@
 {
   "appId": "com.angga.serial",
-  "files": ["dist"],
-  "extraResources": ["dist/preload", "dist/main", "dist/renderer"],
+  "files": ["_dist"],
+  "extraResources": ["_dist/preload", "_dist/renderer"],
   "icon": "./desktopIcon.png",
   "mac": {
     "target": "dmg"

@@ -1,4 +1,5 @@
 import React from 'react';
+import SerialPort from './Serial';
 
 export default function App() {
   const [platform, setPlatform] = React.useState("");
@@ -13,8 +14,7 @@ export default function App() {
 
   return (
     <div>
-      <h1>Hi!</h1>
-      <p>Platform: {platform}</p>
+      <SerialPort />
     </div>
   );
 }

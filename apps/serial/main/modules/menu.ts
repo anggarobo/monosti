@@ -25,7 +25,7 @@ export function createMenu(mainWindow: BrowserWindow, isDev = true) {
             accelerator: "CmdOrCtrl+I",
             label: "DevTools",
             click: () => mainWindow.webContents.toggleDevTools(),
-            visible: isDev,
+            // visible: isDev,
           },
           {
             label: "Quit",

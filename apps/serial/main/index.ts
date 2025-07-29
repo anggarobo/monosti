@@ -6,6 +6,7 @@ import * as serial from './modules/serial.js';
 import { createMenu } from './modules/menu.js';
 import __path from './utils/path.js'
 import __platform from './utils/platform.js'
+import so from './modules/shared-object.js';
 
 const isDev = !app.isPackaged;
 const __filename = fileURLToPath(import.meta.url);
@@ -39,6 +40,9 @@ app.whenReady().then(() => {
     win.loadFile(path.join(__dirname, '../renderer/index.html'));
   }
 
+  // Coba panggil fungsi dari .so/.dll
+  console.log('[nativeffi] Datetime:', so.getCurrentDatetime());
+  console.log('[nativeffi] InputParam:', so.getInputParam(12345));
   serial.init(win)
   createMenu(win, isDev)
   ipcMain.handle("platform", (e) => {

@@ -1,0 +1,13 @@
+{
+  "name": "@packages/native-ffi",
+  "version": "1.0.0",
+  "main": "index.js",
+  "gypfile": true,
+  "dependencies": {
+    "node-addon-api": "^8.5.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.12.1"
+}
