@@ -3,6 +3,7 @@
   "references": [
     { "path": "packages/ts" },
     { "path": "packages/utils" },
+    { "path": "packages/native-ffi" },
     { "path": "apps/svport" },
     { "path": "apps/serial" }
   ]

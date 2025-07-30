@@ -6,22 +6,19 @@ export default function SerialPort() {
   const [path, setPath] = useState<string>("");
   const [status, setStatus] = useState<string>("Connecting...");
   const [ports, setPorts] = useState<any>(undefined);
-  // console.log({ receivedData, ports, status, command });
 
-  const getPorts = async () => {
+  const getPortList = async () => {
     const port = await window.api.serial.listPorts();
+
     if (port) setStatus("Connected");
     setPorts(port);
   };
 
   useEffect(() => {
-    getPorts();
-    // Connect ke TCP
-    // window.api.serial.connect("127.0.0.1", 5000);
+    getPortList();
 
-    window.api.serial.listPorts().then((port) => console.log(port));
     window.api.serial.onPortListChanged((info) => {
-      console.log(info);
+      console.log({info});
     });
 
     // Listen data masuk

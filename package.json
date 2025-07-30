@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev:svelte": "pnpm --filter @apps/svelte dev",
-    "dev:serial": "pnpm --filter @apps/serial dev:renderer"
+    "dev:serial": "pnpm --filter @apps/serial dev"
   },
   "devDependencies": {
     "typescript": "^5.4.0"

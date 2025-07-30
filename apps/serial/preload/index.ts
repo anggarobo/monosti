@@ -1,6 +1,7 @@
 import { contextBridge, ipcRenderer } from 'electron';
 
 (async () => {
+  console.log("PRELOAD!!!\n")
   const platform = () => ipcRenderer.invoke('platform');
   contextBridge.exposeInMainWorld('api', {
     platform,
@@ -11,8 +12,14 @@ import { contextBridge, ipcRenderer } from 'electron';
         });
       },
       listPorts: () => ipcRenderer.invoke("serial-list"),
-      sendData: (data: any) => ipcRenderer.send("serial-send", data),
-      onData: (callback: (info: { path: string; data: string; }) => void) => ipcRenderer.on("serial-data", (_e, info) => callback(info)),
+      sendData: (data: any) => {
+        console.log("send data", { data })
+        ipcRenderer.send("serial-send", data)
+      },
+      onData: (callback: (info: { path: string; data: string; }) => void) => ipcRenderer.on("serial-data", (_e, info) => {
+        console.log("preload", { info })
+        callback(info)
+      }),
       onStatus: (callback: (status: string) => void) => ipcRenderer.on("serial-status", (_, status) => callback(status)),
       onPortListChanged: (
         callback: (info: {

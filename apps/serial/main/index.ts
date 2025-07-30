@@ -36,7 +36,7 @@ app.whenReady().then(() => {
     console.log('Loading localhost...');
     win.loadURL('http://localhost:5173');
   } else {
-    console.log('Loading local file...');
+    console.log('Loading preload_path local file...');
     win.loadFile(path.join(__dirname, '../renderer/index.html'));
   }
 

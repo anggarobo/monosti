@@ -9,7 +9,6 @@
   "description": "A Electron app with React and Vite",
   "scripts": {
     "build:nodegyp": "node-gyp configure build && mkdir -p ../../apps/serial/build/Release && cp ./build/Release/nativeaddon.node ../../apps/serial/build/Release/",
-    "rebuild": "electron-rebuild -f -w ffi-napi",
     "dev": "pnpm build; concurrently -k -n MAIN,RENDERER -c yellow,cyan \"pnpm dev:main\" \"pnpm dev:renderer\" \"pnpm dev:electron\"",
     "dev:main": "tsc -w -p main",
     "dev:renderer": "vite --config renderer/vite.config.ts",
@@ -28,13 +27,9 @@
     "@packages/ts": "workspace:*",
     "@packages/types": "workspace:*",
     "@packages/utils": "workspace:*",
-    "@types/ffi-napi": "^4.0.10",
-    "@types/ref-napi": "^3.0.12",
     "bindings": "^1.5.0",
-    "ffi-napi": "^4.0.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "ref-napi": "^3.0.3",
     "serialport": "^13.0.0"
   },
   "devDependencies": {

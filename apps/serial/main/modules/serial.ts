@@ -32,7 +32,7 @@ function initMultiSerial(mainWindow: BrowserWindow, paths: string[]) {
     const retry = (attempt: number = 1) => {
       // if (!fs.existsSync(path)) continue;
       if (!fs.existsSync(p)) {
-        log(`[SerialHelper] Port ${p} is unavailable. Retry...`);
+        log(`Port ${p} is unavailable. Retry...`);
         mainWindow.webContents.send("serial-status", "Connecting...");
 
         if (attempt < 3) {
@@ -71,15 +71,16 @@ function initMultiSerial(mainWindow: BrowserWindow, paths: string[]) {
 
       parser.on("data", (data: string) => {
         log(`[${p}] ✅ Data received: ${data}`);
-        mainWindow.webContents.send("serial-data", { p, data });
+        mainWindow.webContents.send("serial-data", { path: p, data });
       });
 
       port.on("close", () => {
         log(`INPUT Port [${p}] CLOSED`);
+        mainWindow.webContents.send("serial-status", `Connected to ${p}`);
       });
 
       port.on("error", (err) => {
-        log(`[SerialHelper] Error: ${err.message}; attempt: ${attempt}`, true);
+        log(`Error: ${err.message}; attempt: ${attempt}`, true);
         mainWindow.webContents.send(
           "serial-status",
           `Serial error: ${err.message}`,
@@ -100,7 +101,7 @@ function initMultiSerial(mainWindow: BrowserWindow, paths: string[]) {
 function initOutputSerial(paths: string[]) {
   for (const p of paths) {
     if (!fs.existsSync(p)) {
-      log(`[SerialHelper] OUTPUT Port ${p} is unavailable. Skipping...`);
+      log(`OUTPUT Port ${p} is unavailable. Skipping...`);
       continue;
     }
 
@@ -114,7 +115,7 @@ function initOutputSerial(paths: string[]) {
     });
 
     port.on("error", (err) => {
-      log(`[SerialHelper] Error OUTPUT ${p}: ${err.message}`);
+      log(`Error OUTPUT ${p}: ${err.message}`);
     });
 
     port.on("close", () => {
@@ -129,6 +130,7 @@ export function init(mainWindow: BrowserWindow) {
   startSerialWatcher(mainWindow);
   initMultiSerial(mainWindow, INPUT_PATHS);
   initOutputSerial(OUTPUT_PATHS);
+  serialList()
 
   ipcMain.on(
     "serial-send",
@@ -139,52 +141,46 @@ export function init(mainWindow: BrowserWindow) {
         port.write(data, (err) => {
           if (err) {
             log(
-              `[SerialHelper] failed to send to ${targetPath}: ${err.message}`,
+              `failed to send to ${targetPath}: ${err.message}`,
             );
           } else {
-            log(`[SerialHelper] Data sent to ${targetPath}: ${data}`);
+            log(`Data sent to ${targetPath}: ${data}`);
           }
         });
       } else {
-        log(`[SerialHelper] Port OUTPUT ${targetPath} is not open yet.`);
+        log(`Port OUTPUT ${targetPath} is not open yet.`);
       }
     },
   );
-
-  ipcMain.handle("serial-list", async () => {
-    try {
-      const ports = await serialList();
-
-      return ports;
-    } catch (err: any) {
-      log(`[SerialHelper] Failed to get port list: ${err.message}`);
-      return [];
-    }
-  });
 }
 
-async function serialList(): Promise<{
-  standard: Array<{ path: string; source: string }>;
-  input: Array<{ path: string; source: string }>;
-  output: Array<{ path: string; source: string }>;
-}> {
-  const standardPorts = await SerialPort.list();
-  const standardList = standardPorts.map((p) => ({
-    path: p.path,
-    source: "system",
-  }));
+function serialList() {
+  ipcMain.handle("serial-list", async () => {
+    let ports
+    try {
+      const standardPorts = await SerialPort.list();
+      const standardList = standardPorts.map((p) => ({
+        path: p.path,
+        source: "system",
+      }));
 
-  const inputList = INPUT_PATHS.filter(fs.existsSync).map((p) => ({
-    path: p,
-    source: "input",
-  }));
+      const inputList = INPUT_PATHS.filter(fs.existsSync).map((p) => ({
+        path: p,
+        source: "input",
+      }));
 
-  const outputList = OUTPUT_PATHS.filter(fs.existsSync).map((p) => ({
-    path: p,
-    source: "output",
-  }));
+      const outputList = OUTPUT_PATHS.filter(fs.existsSync).map((p) => ({
+        path: p,
+        source: "output",
+      }));
 
-  return { standard: standardList, input: inputList, output: outputList };
+      ports = { standard: standardList, input: inputList, output: outputList };
+    } catch (err) {
+      log(`Failed to get port list: ${(err as Error).message}`);
+    }
+
+    return ports
+  })
 }
 
 function startSerialWatcher(mainWindow: BrowserWindow) {
