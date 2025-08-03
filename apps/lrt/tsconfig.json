@@ -1,0 +1,11 @@
+{
+  "extends": ["../../packages/ts/tsconfig.json"],
+  "compilerOptions": {
+    "composite": true,
+    "jsx": "react-jsx",
+    "module": "ESNext",
+    "typeRoots": ["./node_modules/@types", "./types"],
+    "types": []
+  },
+  "include": ["src", "renderer", "assets", "types.d.ts"]
+}

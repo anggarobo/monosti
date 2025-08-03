@@ -488,6 +488,12 @@
     "want_separate_host_toolset": 0,
     "nodedir": "/home/angga/.cache/node-gyp/22.16.0",
     "python": "/usr/bin/python3",
-    "standalone_static_library": 1
+    "standalone_static_library": 1,
+    "verify_deps_before_run": "false",
+    "_jsr_registry": "https://npm.jsr.io/",
+    "frozen_lockfile": "",
+    "user_agent": "pnpm/10.12.1 npm/? node/v22.16.0 linux x64",
+    "node_gyp": "/home/angga/.cache/node/corepack/v1/pnpm/10.12.1/dist/node_modules/node-gyp/bin/node-gyp.js",
+    "registry": "https://registry.npmjs.org/"
   }
 }

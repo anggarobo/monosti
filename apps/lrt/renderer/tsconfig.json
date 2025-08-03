@@ -1,0 +1,7 @@
+{
+  "extends": "../../../packages/ts/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../_dist/renderer"
+  },
+  "include": ["./**/*.ts", "../types.d.ts"]
+}

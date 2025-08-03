@@ -5,6 +5,7 @@
     { "path": "packages/utils" },
     { "path": "packages/native-ffi" },
     { "path": "apps/svport" },
-    { "path": "apps/serial" }
+    { "path": "apps/serial" },
+    { "path": "apps/lrt" },
   ]
 }
