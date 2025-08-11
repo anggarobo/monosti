@@ -1,7 +1,6 @@
 import { contextBridge, ipcRenderer } from "electron"
 import { serial } from "./serial/preload"
 
-
 console.log('[lrt desktop] preload.ts');
 
 (async () => {
