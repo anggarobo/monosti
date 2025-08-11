@@ -1,13 +1,15 @@
 {
-    "name": "lrt-desktop",
+    "name": "gate-app",
     "type": "module",
     "private": true,
     "version": "0.0.0",
-    "main": "../apx/index.js",
+    "main": "app/index.js",
     "author": "anggarobo",
     "license": "MIT",
     "description": "A LRT App",
-    "scripts": {},
+    "scripts": {
+        
+    },
     "dependencies": {
         "bindings": "^1.5.0",
         "react": "^19.1.0",

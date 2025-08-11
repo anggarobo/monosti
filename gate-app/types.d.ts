@@ -1,5 +1,3 @@
-import type { SerialApi } from "src/serial/preload";
-
 export {}
 
 type Platform = {

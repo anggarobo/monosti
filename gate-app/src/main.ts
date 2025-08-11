@@ -1,10 +1,11 @@
 import { BrowserWindow, WebPreferences } from "electron";
 import { createModuleRunner } from "./modules/runner";
 import { createWindowManagerModule } from "./modules/windowManager";
-import { AppInitConfig } from "./modules/types";
+import type { AppInitConfig } from "./modules/types";
 import { disallowMultipleAppInstance } from "./modules/instance";
 import { terminateAppOnLastWindowClose } from "./modules/terminate";
 import { hardwareAccelerationMode } from "./modules/hardwareAcceleration";
+import { fileURLToPath } from 'node:url';
 
 const webPreferences: WebPreferences = {
     contextIsolation: true,
@@ -48,3 +49,13 @@ async function initApp(initConfig: AppInitConfig) {
     
     await init
 }
+
+
+initApp({
+  preload: {
+    path: fileURLToPath(import.meta.resolve("./preload"))
+  },
+  renderer: process.env.VITE_APP_VERSION || !!process.env.VITE_DEV_SERVER_URL ? new URL(import.meta.env.VITE_DEV_SERVER_URL!) : {
+    path: fileURLToPath(import.meta.resolve("./renderer"))
+  }
+})

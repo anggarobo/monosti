@@ -344,7 +344,7 @@ endif
 
 quiet_cmd_regen_makefile = ACTION Regenerating $@
 cmd_regen_makefile = cd $(srcdir); /home/angga/.cache/node/corepack/v1/pnpm/10.12.1/dist/node_modules/node-gyp/gyp/gyp_main.py -fmake --ignore-environment "-Dlibrary=shared_library" "-Dvisibility=default" "-Dnode_root_dir=/home/angga/.cache/node-gyp/22.16.0" "-Dnode_gyp_dir=/home/angga/.cache/node/corepack/v1/pnpm/10.12.1/dist/node_modules/node-gyp" "-Dnode_lib_file=/home/angga/.cache/node-gyp/22.16.0/<(target_arch)/node.lib" "-Dmodule_root_dir=/home/angga/dev/sti/projects/poc/monosti/packages/native-ffi" "-Dnode_engine=v8" "--depth=." "-Goutput_dir=." "--generator-output=build" -I/home/angga/dev/sti/projects/poc/monosti/packages/native-ffi/build/config.gypi -I/home/angga/.cache/node/corepack/v1/pnpm/10.12.1/dist/node_modules/node-gyp/addon.gypi -I/home/angga/.cache/node-gyp/22.16.0/include/node/common.gypi "--toplevel-dir=." binding.gyp
-Makefile: $(srcdir)/../../node_modules/.pnpm/node-addon-api@8.5.0/node_modules/node-addon-api/node_api.gyp $(srcdir)/build/config.gypi $(srcdir)/binding.gyp $(srcdir)/../../../../../../../.cache/node/corepack/v1/pnpm/10.12.1/dist/node_modules/node-gyp/addon.gypi $(srcdir)/../../../../../../../.cache/node-gyp/22.16.0/include/node/common.gypi
+Makefile: $(srcdir)/../../../../../../../.cache/node-gyp/22.16.0/include/node/common.gypi $(srcdir)/../../../../../../../.cache/node/corepack/v1/pnpm/10.12.1/dist/node_modules/node-gyp/addon.gypi $(srcdir)/binding.gyp $(srcdir)/../../node_modules/.pnpm/node-addon-api@8.5.0/node_modules/node-addon-api/node_api.gyp $(srcdir)/build/config.gypi
 	$(call do_cmd,regen_makefile)
 
 # "all" is a concatenation of the "all" targets from all the included
