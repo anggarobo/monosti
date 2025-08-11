@@ -5,7 +5,9 @@
     "jsx": "react-jsx",
     "module": "ESNext",
     "typeRoots": ["./node_modules/@types", "./types"],
-    "types": []
+    "types": [],
+    "outDir": "app/src",
+    "rootDir": "src",
   },
   "include": ["src", "**/*.d.ts"]
 }

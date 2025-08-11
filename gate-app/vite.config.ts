@@ -1,12 +1,14 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import path, { resolve } from 'path';
 
 export default defineConfig({
-  root: __dirname,
+  root: path.join(__dirname, 'src/public'),
   plugins: [react()],
   build: {
-    outDir: 'app',
+    outDir: resolve(__dirname, '../../app'),
     emptyOutDir: true,
+
   },
   define: {
     "process.env": {

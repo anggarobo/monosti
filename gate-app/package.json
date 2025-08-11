@@ -3,12 +3,22 @@
     "type": "module",
     "private": true,
     "version": "0.0.0",
-    "main": "app/index.js",
+    "main": "app/src/main.js",
     "author": "anggarobo",
     "license": "MIT",
     "description": "A LRT App",
     "scripts": {
-        
+        "dev": "pnpm build; concurrently -k -n MAIN,RENDERER -c yellow,cyan \"pnpm dev:main\" \"pnpm dev:renderer\" \"pnpm dev:electron\"",
+        "dev:main": "tsc -w -p tsconfig.json",
+        "dev:renderer": "vite --config vite.config.ts",
+        "dev:electron": "wait-on http://localhost:5173 && electron app/src/main.js",
+        "build": "pnpm build:main; pnpm build:renderer",
+        "build:main": "tsc -p tsconfig.json",
+        "build:renderer": "vite build --config vite.config.ts",
+        "transpile:main": "tsc -p tsconfig.json",
+        "dist:linux": "pnpm run transpile:main && pnpm run build && electron-builder --linux --x64",
+        "dist:mac": "pnpm run transpile:main && pnpm run build && electron-builder --mac --arm64",
+        "dist:win": "pnpm run transpile:main && pnpm run build && electron-builder --win --x64"
     },
     "dependencies": {
         "bindings": "^1.5.0",
@@ -26,6 +36,7 @@
         "electron": "^36.5.0",
         "electron-builder": "^26.0.12",
         "typescript": "^5.4.0",
-        "vite": "^5.0.0"
+        "vite": "^5.0.0",
+        "wait-on": "^8.0.4"
     }
 }
