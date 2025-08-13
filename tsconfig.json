@@ -4,8 +4,10 @@
     { "path": "packages/ts" },
     { "path": "packages/utils" },
     { "path": "packages/native-ffi" },
+    { "path": "packages/sdk" },
     { "path": "apps/svport" },
     { "path": "apps/serial" },
     { "path": "apps/lrt" },
+    { "path": "gate-app" }
   ]
 }
