@@ -14,8 +14,19 @@ export default function SerialPort() {
     setPorts(port);
   };
 
+  // example usage
+  const getUsers = async () => {
+    try {
+      const result = await window.db.query('SELECT * FROM users');
+      return result
+    } catch (error) {
+      throw new Error((error as Error).message);
+    }
+  }
+
   useEffect(() => {
     getPortList();
+    getUsers()
 
     window.api.serial.onPortListChanged((info) => {
       console.log({info});
