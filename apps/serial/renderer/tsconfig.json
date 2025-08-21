@@ -3,5 +3,5 @@
   "compilerOptions": {
     "outDir": "../_dist/renderer"
   },
-  "include": ["./**/*.ts", "../types.d.ts"]
+  "include": ["./**/*.ts", "../types.d.ts", "postcss.config.cjs"]
 }

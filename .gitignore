@@ -5,7 +5,10 @@ node_modules
 **/dist-*
 **/dist
 **/_dist
+**/.dist
 
 gate-app/app
 
 **/build
+
+**/*-lock.yaml

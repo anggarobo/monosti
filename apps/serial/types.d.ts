@@ -29,6 +29,13 @@ declare global {
     api: {
       platform: () => Promise<OsPlatform>;
       serial: SerialApi;
+    },
+    db: {
+      query: (sql: string, params?: any[]) => Promise<{
+        success: boolean;
+        data?: any;
+        error?: string;
+      }>;
     }
   }
 }
