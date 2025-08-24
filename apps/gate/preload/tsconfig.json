@@ -1,7 +1,0 @@
-{
-  "extends": "../../../packages/ts/tsconfig.json",
-  "compilerOptions": {
-    "outDir": "../_dist/preload"
-  },
-  "include": ["./**/*.ts", "./**/*.js", "../types.d.ts"]
-}

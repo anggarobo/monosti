@@ -1,5 +1,11 @@
 export {}
 
+declare module '*.module.css' {
+  const classes: { [key: string]: string };
+  export default classes;
+}
+
+
 type OsPlatform = {
   platform: "win32" | "linux" | "darwin";
   isMac: boolean;
