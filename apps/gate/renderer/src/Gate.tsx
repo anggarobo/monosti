@@ -9,6 +9,7 @@ function Card() {
                 <p className="text-xl font-medium text-black dark:text-white">Pulomas (Pum)</p>
             </div>
         </div>
+        
     )
 }
 

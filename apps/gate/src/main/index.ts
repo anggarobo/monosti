@@ -7,6 +7,7 @@ import { createMenu } from './modules/menu.js';
 import __path from './utils/path.js'
 import __platform from './utils/platform.js'
 import so from './modules/shared-object.js';
+import openConsoleWindow from './modules/console.js';
 
 const isDev = !app.isPackaged;
 const __filename = fileURLToPath(import.meta.url);
@@ -31,6 +32,9 @@ app.whenReady().then(() => {
     // console.log(process.env)
     win.show();
   });
+  
+  // ✅ Call openConsoleWindow here
+  openConsoleWindow();
 
   if (isDev) {
     console.log('Loading localhost...');
